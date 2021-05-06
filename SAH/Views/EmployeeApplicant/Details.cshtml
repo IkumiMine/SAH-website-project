@@ -1,0 +1,74 @@
+﻿@model SAH.Models.ModelViews.ShowEmployeeApplicant
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Internal Education Portal</h2>
+<div>
+    <h4>Employee Application Details</h4>
+    <hr />
+    <dl class="dl-horizontal Ticket">
+
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeApplicant.EmployeeApplicantId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeApplicant.EmployeeApplicantId)
+            </dd>
+            <dt>
+                Employee Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.User.FirstName)  @Html.DisplayFor(model => model.User.LastName)
+            </dd>
+            <dt>
+                Employee Number
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.User.EmployeeNumber)
+            </dd>
+            <dt>
+                Email
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.User.Email)
+            </dd>
+
+            <dt>
+                Course Registered
+            </dt>
+            <dd>
+                @Html.ActionLink(Model.Courses.CourseCode, "Details", "Courses", new { id = Model.Courses.CourseId }, new { })
+                @Html.ActionLink(Model.Courses.CourseName, "Details", "Courses", new { id = Model.Courses.CourseId }, new { })
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeApplicant.Reason)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeApplicant.Reason)
+            </dd>
+        </div>
+
+
+
+
+    </dl>
+</div>
+<p>
+
+
+    @if (Model.isadmin)
+    {
+    @Html.ActionLink(" Back |", "List") 
+    @Html.ActionLink(" Edit |", "Edit", new { id = Model.EmployeeApplicant.EmployeeApplicantId })
+    @Html.ActionLink(" Delete ", "DeleteConfirm", new { id = Model.EmployeeApplicant.EmployeeApplicantId })
+    }
+</p>
+

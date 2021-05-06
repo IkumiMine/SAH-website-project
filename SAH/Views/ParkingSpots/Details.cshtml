@@ -1,0 +1,66 @@
+﻿@model SAH.Models.ModelViews.ShowParkingSpot
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <h4>Details about @Model.Spot.SpotNumber spot</h4>
+    <div class="col-sm-12 col-md-6">
+        <dl class="dl-horizontal Spot">
+            <div>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Spot.Zone)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Spot.Zone)
+                </dd>
+            </div>
+            <div>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Spot.SpotNumber)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Spot.SpotNumber)
+                </dd>
+            </div>
+            <div>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Spot.Status)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Spot.Status)
+                </dd>
+            </div>
+        </dl>
+
+    </div>
+    <div class="col-sm-12 col-md-6">
+
+        <h3>List of tickets in the spot @Model.Spot.SpotNumber</h3>
+        @if (@Model.AllTickets.Count() > 0)
+        {
+         <ul>
+            @foreach (var ticket in Model.AllTickets)
+            {
+                var temp = @Html.DisplayFor(modelItem => ticket.NumberPlate).ToHtmlString();
+                <li>
+                    @Html.ActionLink(temp, "Index", "Tickets/Details/" + ticket.TicketId)
+                </li>
+            }
+         </ul>
+        } else {
+
+                <p>This spot has no ticket! </p>
+        }
+
+           
+
+
+        </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Spot.SpotId }) |
+    @Html.ActionLink("Back to parking spot List", "ParkingSpotList")
+</p>

@@ -1,0 +1,82 @@
+﻿@model SAH.Models.ModelViews.ShowJob
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Sault Area Hospital</h2>
+
+<div>
+    <h4>Details about @Model.Job.Position</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.Position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job.Position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.Requirement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job.Requirement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.Deadline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job.Deadline)
+        </dd>
+
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Job.JobId }) |
+    @Html.ActionLink("Back to List", "List")
+    @Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.Job.JobId })
+</p>
+
+<h4> </h4>
+<h4> </h4>
+@{ /*
+   <div>
+       <h4>Application for @Model.Job.Position</h4>
+       <div>
+           @foreach (var Application in Model.Applications)
+           {
+               <div>
+                   @Html.ActionLink(
+                   Application.ApplicationId,
+                   "Details",
+                   "Application",
+                   new { id = Application.ApplicationId },
+                   new { })
+               </div>
+           }
+       </div>
+   </div>
+           */
+}

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SAH.Models.ParkingSpot>
+
+@{
+    ViewBag.Title = "Parking List";
+}
+
+<h2>List of parking spots</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Zone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpotNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpotNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SpotId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SpotId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SpotId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<p>
+    @Html.ActionLink("Ticket List", "Index", "Tickets/TicketList")
+
+</p>

@@ -1,0 +1,50 @@
+﻿@model SAH.Models.ModelViews.DetailDepartment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Department</h4>
+    <hr />
+    <div class="row">
+
+        <div class="col-lg-6">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Department.DepartmentId)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Department.DepartmentId)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Department.DepartmentName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Department.DepartmentName)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col-lg-6">
+            <h5>Donor List</h5>
+            <div>
+                @foreach (var donor in Model.Users)
+                {
+                    <div>
+                        @Html.ActionLink(donor.FirstName + " " + donor.LastName, "Details", "User", new { id = donor.Id },
+                            new { })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Department.DepartmentId }) |
+    @Html.ActionLink("Back to List", "List")
+</p>

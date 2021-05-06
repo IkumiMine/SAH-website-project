@@ -1,0 +1,62 @@
+﻿@model SAH.Models.ModelViews.ListJobs
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Sault Area Hospital</h2>
+<h4>SAH Jobs Opportunities</h4>
+
+ @if (Model.isadmin)
+    {
+    @Html.ActionLink("Create New Job", "Create")
+    }
+
+<table class="table">
+    <tr>
+        <th>
+            Position
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Type
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var job in Model.joblist)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => job.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => job.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => job.Type)
+            </td>
+            <td>
+                @if (Model.isadmin)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = job.JobId })
+                }
+
+                @Html.ActionLink("Details", "Details", new { id = job.JobId })
+
+                @if (Model.isadmin)
+                {
+                    @Html.ActionLink("Delete", "DeleteConfirm", new { id = job.JobId })
+                }
+            </td>
+        </tr>
+    }
+
+    <p>
+        @Html.ActionLink("Application List", "Index", "Application/List")
+
+    </p>
+
+</table>

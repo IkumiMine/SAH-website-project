@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SAH.Models.ModelViews.ShowApplication>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Sault Area Hospital </h2>
+<h4>SAH Job Applications</h4>
+<p>
+    @Html.ActionLink("Create New Application", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Application.ApplicationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Job.Position)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.ApplicationId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Job.Position)
+            </td>
+            <td>
+                
+                
+               @Html.ActionLink("Edit", "Edit", new { id = item.Application.ApplicationId }) 
+                
+
+                @Html.ActionLink("Details", "Details", new { id = item.Application.ApplicationId }) |
+                @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.Application.ApplicationId })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,57 @@
+﻿@model SAH.Models.Ticket
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h4>Delete ticket @Model.NumberPlate ?</h4>
+
+    <div>
+       
+        <dl class="dl-horizontal">
+           
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NumberPlate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NumberPlate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EntryTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EntryTime)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Duration)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Duration)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Fees)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Fees)
+            </dd>
+    
+        </dl>
+    
+        <form action="/Tickets/Delete/@Model.TicketId" name="delete" method="post">
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" onclick="confirmation();" value="Delete" class="btn btn-danger" /> |
+                @Html.ActionLink("Back to tickets List", "TicketList")
+            </div>
+        </form>
+    </div>
+

@@ -1,0 +1,31 @@
+﻿@model SAH.Models.ParkingSpot
+
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h4>Delete spot @Model.SpotNumber ?</h4>
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Zone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zone)
+        </dd>
+
+    </dl>
+
+    <form action="/ParkingSpots/Delete/@Model.SpotId" name="delete" method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" onclick="confirmation();" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to Parking Spots List", "ParkingSpotList")
+        </div>
+    </form>
+</div>
+

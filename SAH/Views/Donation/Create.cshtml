@@ -1,0 +1,81 @@
+﻿@model SAH.Models.ModelViews.CreateDonation
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Donation</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Donation.AmountOfDonation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Donation.AmountOfDonation, new { htmlAttributes = new { @class = "form-control", Name = "AmountOfDonation" } })
+                @Html.ValidationMessageFor(model => model.Donation.AmountOfDonation, "", new { @class = "text-danger", data_valmsg_for = "AmountOfDonation" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="departmentId" class="control-label col-md-2">Where to Donate</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(
+                    model => model.Donation.DepartmentId,
+                    new SelectList(Model.AllDepartments, "DepartmentId", "DepartmentName", Model.Donation.DepartmentId),
+                    new { @class = "form-control", Name = "DepartmentID" }
+                )
+                @Html.ValidationMessageFor(model => model.AllDepartments, "", new { @class = "text-danger", data_valmsg_for = "DepartmentId" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Donation.PaymentMethod, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    string[] paymentMethods = new[] { "credit", "debit" };
+                    foreach (var payment in paymentMethods)
+                    {
+                        <input type="radio" value="@payment" name="paymentMethod" id=@payment />
+                        <label for=@payment>@payment</label>
+                    }
+                }
+            </div>
+        </div>
+
+        <!--Card number and security code are not going to store in the database-->
+        <div class="form-group">
+            <label class="control-label col-md-2" for="cardNum">Card Number</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="cardNum" />
+                <span class="text-danger field-validation-error" id="cardNumError"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="code">Security Code</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="code" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Donate" class="btn btn-default" id="createBtn" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
